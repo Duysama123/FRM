@@ -1,6 +1,10 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  resources :recipe_ingredients
+  resources :ingredients
+  resources :recipes
+  resources :user_accounts
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   authenticate :user, ->(u) { u.admin? } do
     mount Sidekiq::Web => '/sidekiq'
